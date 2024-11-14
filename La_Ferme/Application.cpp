@@ -8,7 +8,7 @@
 
 Application::Application()
 {
-  // Code
+  // Cod
   ; 
 }
   
