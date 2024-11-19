@@ -1,4 +1,4 @@
-/*
+
 const int LED_EXT=12; //grove led on D6 => GPIO 12 file jaune !
 const int LED_BUILTIN2=16; //2nd built in led
 
@@ -23,7 +23,7 @@ void loop(){
   delay(1000);
   digitalWrite(LED_BUILTIN, LOW);
   digitalWrite(LED_BUILTIN2, LOW);
-  digitalWrite(LED_EXT, HIGH); //quand on allume la 14 les led BuiltIn s'allument
+  digitalWrite(LED_EXT, HIGH); //quand on allume la LED_EXT les led BuiltIn s'allument
   delay(1000);
   
-}*/
+}

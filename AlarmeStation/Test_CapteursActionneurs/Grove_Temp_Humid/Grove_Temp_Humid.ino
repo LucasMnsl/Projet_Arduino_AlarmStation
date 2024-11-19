@@ -1,4 +1,4 @@
-/*
+
 //video on I2C to understand how to communicate with I2C sensors : https://youtu.be/6IAkYpmA1DQ?si=2eVq7p_AGo7YhJZE
 // DataSheet : https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf
 
@@ -76,4 +76,3 @@ void loop(){
   
   
 }
-*/

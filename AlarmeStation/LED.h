@@ -9,7 +9,6 @@ class LED {
     LED();
     LED(int pin);
     ~LED();
-    void config(int pin);
     void turnOn();
     void turnOff();
 };

@@ -1,4 +1,4 @@
-/*
+
 const int LED_BUILTIN2=16; //2nd built in led
 const int LIGHT_SENSOR=A0; //Analog Input
 int SensorValue=0;
@@ -24,4 +24,4 @@ void loop(){
   digitalWrite(LED_BUILTIN2, HIGH);
   delay(MyDelay);
   
-}*/
+}

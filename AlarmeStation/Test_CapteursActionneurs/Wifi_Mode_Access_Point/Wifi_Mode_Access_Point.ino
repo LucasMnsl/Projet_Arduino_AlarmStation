@@ -8,7 +8,7 @@
     4. On peut ensuite afficher l'@IP assignée à l'access point
     -rmq : c'est un point d'accès sans accès internet il sert uniquement à la communication des appareils entre eux
 */
-/*
+
 #include <ESP8266WiFi.h> //<>=bibliotèques ""=fichiers
 //doc : https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/soft-access-point-class.html
 
@@ -34,4 +34,3 @@ void setup(){
 void loop(){
   
 }
-*/

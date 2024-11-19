@@ -6,7 +6,7 @@
     3. Attendre de la fonction Wifi.status() retourn WL_CONNECTED
     4. On peut ensuite afficher l'@IP assignée
 */
-/*
+
 #include <ESP8266WiFi.h> //<>=bibliotèques ""=fichiers
 //doc : https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/readme.html
 
@@ -33,4 +33,4 @@ void setup(){
 
 void loop(){
   
-}*/
+}

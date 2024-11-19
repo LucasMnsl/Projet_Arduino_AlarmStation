@@ -7,6 +7,7 @@
 #define APPLICATION_H_
 
 #include "LED.h"
+#include "BUZZER.h"
 
 /**
   * @class Application
@@ -15,13 +16,16 @@
 class Application
 {
   private :
-    LED led1;
+    int maPinLED;
+    LED *maLED;
+    int maPinBUZZER;
+    BUZZER *monBUZZER;
   public :
     /**
      * @fn Application();
      * @brief Constructeur par defaut
     */    
-    Application();
+    Application(int pinPourLED, int pinPourBUZZER);
     /**
      * @fn Application();
      * @brief Destructeur
