@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  BUZZER.cpp
+ * @author <MANSILHA Lucas mansilha@insa-toulouse.fr>
+ * @brief Fichier source de la classe
+ *********************************************************************/
 #include <Arduino.h>
 #include "BUZZER.h"
 

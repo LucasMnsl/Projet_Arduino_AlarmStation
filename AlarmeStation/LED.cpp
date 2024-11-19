@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  LED.cpp
+ * @author <MANSILHA Lucas mansilha@insa-toulouse.fr>
+ * @brief Fichier source de la classe
+ *********************************************************************/
 #include <Arduino.h>
 #include "LED.h"
 

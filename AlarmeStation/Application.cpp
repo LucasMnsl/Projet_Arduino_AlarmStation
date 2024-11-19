@@ -1,6 +1,6 @@
 /*********************************************************************
  * @file  Apllication.cpp
- * @author <mettre l'adresse mail ou nom prenom>
+ * @author <MANSILHA Lucas mansilha@insa-toulouse.fr, LIN Hoakai halin@insa-toulouse.fr>
  * @brief Fichier source de l'application
  *********************************************************************/
 #include <Arduino.h>
@@ -23,7 +23,7 @@ Application::~Application()
 
 void Application::init(void)
 {
-  delay(5000); //5sec pour lancer le moniteur série
+  delay(5000);        //5sec pour lancer le moniteur série
   Serial.begin(9600);
   maLED=new LED(maPinLED);
   delay(1000);
@@ -36,5 +36,4 @@ void Application::run(void)
 {
   maLED->turnOn();
   monBUZZER->turnOn();
-  delay(10000);
 }

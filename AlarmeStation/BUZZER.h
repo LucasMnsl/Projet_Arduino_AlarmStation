@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  BUZZER.h
+ * @author <MANSILHA Lucas mansilha@insa-toulouse.fr>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #ifndef BUZZER_H_
 #define BUZZER_H_
 
