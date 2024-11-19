@@ -1,15 +1,15 @@
-#include "Application.h"
+/*#include "Application.h"
 
-Application myApplication;
+//Application myApplication;
 
 void setup() 
 {
   // put your setup code here, to run once:
-  myApplication.init();
+  //myApplication.init();
 }
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  myApplication.run();
-}
+  //myApplication.run();
+}*/
