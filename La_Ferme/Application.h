@@ -6,12 +6,16 @@
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
 
+#include "LED.h"
+
 /**
   * @class Application
   * @brief Classe Application 
 */    
 class Application
 {
+  private :
+    LED led1;
   public :
     /**
      * @fn Application();

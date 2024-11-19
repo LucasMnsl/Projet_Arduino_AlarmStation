@@ -6,9 +6,9 @@
 #include "Application.h"
 
 
-Application::Application()
+Application::Application() :led1(14)
 {
-  // Cod
+  
   ; 
 }
   
@@ -20,13 +20,14 @@ Application::~Application()
 
 void Application::init(void)
 {
-  // Code
+  //led1.config(14);
+  led1.turnOff();
     ;
 }
 
 
 void Application::run(void)
 {
-  // Code
+  led1.turnOn();
     ;
 }
