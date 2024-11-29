@@ -5,19 +5,28 @@
  *********************************************************************/
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
-
+#include "Capteur.h"
+#include "CapteurSon.h"
+#include "CapteurRanger.h"
+#include "Ultrasonic.h"
 /**
   * @class Application
   * @brief Classe Application 
 */    
 class Application
 {
+  private: 
+    CapteurSon *S;
+    CapteurRanger *R;
+    Ultrasonic *U;
+
   public :
+  
     /**
      * @fn Application();
      * @brief Constructeur par defaut
     */    
-    Application();
+    Application(int Porte);
     /**
      * @fn Application();
      * @brief Destructeur
