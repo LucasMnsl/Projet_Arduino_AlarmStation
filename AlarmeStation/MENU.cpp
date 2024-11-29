@@ -39,28 +39,28 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED){
       monLCD.setCursor(0, 0);
       monLCD.print("Reglage");
       monLCD.setCursor(0, 1);
-      monLCD.print("->Reglage f1");
+      monLCD.print("->Reglage freq1");
       break;
     case 100 :
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("Reglage f1 :");
+      monLCD.print("Reglage freq1 :");
       monLCD.setCursor(3, 1);
-      monLCD.print(String(leBUZZER->getFreq1()));
+      monLCD.print(String(leBUZZER->getFreq1())+" Hz");
       break;
     case 11 :
       monLCD.clear();
       monLCD.setCursor(0, 0);
       monLCD.print("Reglage");
       monLCD.setCursor(0, 1);
-      monLCD.print("->Reglage f2");
+      monLCD.print("->Reglage freq2");
       break;
     case 110 :
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("Reglage f2 :");
+      monLCD.print("Reglage freq2 :");
       monLCD.setCursor(3, 1);
-      monLCD.print(String(leBUZZER->getFreq2()));
+      monLCD.print(String(leBUZZER->getFreq2())+" Hz");
       break;
     case 12 :
       monLCD.clear();
@@ -74,7 +74,7 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED){
       monLCD.setCursor(0, 0);
       monLCD.print("Reglage delai :");
       monLCD.setCursor(3, 1);
-      monLCD.print(String(leBUZZER->getDeltaMillis()));
+      monLCD.print(String(leBUZZER->getDeltaMillis())+" ms");
       break;
     case 2 :
       monLCD.clear();
@@ -113,6 +113,9 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
       pastValueB1=1;
       if(etat==1 or etat==20 or etat==10 or etat==11) etat++;
       else if (etat==12) etat=10;
+      else if (etat==100) leBUZZER->setFreq1((leBUZZER->getFreq1())-10);
+      else if (etat==110) leBUZZER->setFreq2((leBUZZER->getFreq2())-10);
+      else if (etat==120) leBUZZER->setDeltaMillis((leBUZZER->getDeltaMillis())-10);
       else if (etat==2) etat=1;
       else if (etat==21) etat=20;
     }
@@ -126,6 +129,9 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
       else if (etat==10) etat=100;
       else if (etat==11) etat=110;
       else if (etat==12) etat=120;
+      else if (etat==100) leBUZZER->setFreq1((leBUZZER->getFreq1())+10);
+      else if (etat==110) leBUZZER->setFreq2((leBUZZER->getFreq2())+10);
+      else if (etat==120) leBUZZER->setDeltaMillis((leBUZZER->getDeltaMillis())+10);
       else if (etat==2) etat=20;
       else if (etat==20){
         if (not(laLED->getEtat())){
