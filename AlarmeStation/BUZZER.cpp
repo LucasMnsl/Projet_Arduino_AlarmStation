@@ -12,6 +12,9 @@ BUZZER::BUZZER(){
   pinMode(pinBUZZER, OUTPUT);
   etat=false;
   isFreq1=false;
+  freq1=800;
+  freq2=1200;
+  delai=300;
   Serial.println("--- Objet Buzzer crée, pin = "+String(pinBUZZER)+" ---");
 };
 
@@ -20,6 +23,9 @@ BUZZER::BUZZER(int pin){
   pinMode(pinBUZZER, OUTPUT);
   etat=false;
   isFreq1=false;
+  freq1=800;
+  freq2=1200;
+  delai=300;
   Serial.println("*** Objet Buzzer crée, pin = "+String(pinBUZZER)+" ***");
 }
 
@@ -39,8 +45,8 @@ int BUZZER::getFreq2(){
   return freq2;
 }
 
-int BUZZER::getDeltaMillis(){
-  return deltaMillis;
+int BUZZER::getDelai(){
+  return delai;
 }
 
 void BUZZER::setFreq1(int f){
@@ -51,13 +57,13 @@ void BUZZER::setFreq2(int f){
   freq2=f;
 }
 
-void BUZZER::setDeltaMillis(int t){
-  deltaMillis=t;
+void BUZZER::setDelai(int t){
+  delai=t;
 }
 
 void BUZZER::turnOn(){
   currentMillis=millis();
-  if (currentMillis-lastMillis>=deltaMillis){
+  if (currentMillis-lastMillis>=delai){
     if (isFreq1){
         tone(pinBUZZER, freq1);
     }

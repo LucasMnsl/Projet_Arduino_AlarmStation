@@ -3,8 +3,8 @@
 
 rgb_lcd lcd;
 
-const int colorR = 50;
-const int colorG = 50;
+const int colorR = 255;
+const int colorG = 255;
 const int colorB = 255;
 
 const int BUTTON1=13;
