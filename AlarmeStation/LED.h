@@ -14,6 +14,7 @@ class LED {
     LED();
     LED(int pin);
     ~LED();
+    bool getEtat();
     void turnOn();
     void turnOff();
 };

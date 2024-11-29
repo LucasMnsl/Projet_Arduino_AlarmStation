@@ -25,6 +25,11 @@ LED::~LED(){
   Serial.println("*** Objet Led détruit, pin = "+String(pinLED)+" ***");
 }
 
+bool LED::getEtat(){
+   return etat; 
+}
+
+
 void LED::turnOn(){
   digitalWrite(pinLED, HIGH);
   etat=true;

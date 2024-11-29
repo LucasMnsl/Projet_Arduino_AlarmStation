@@ -27,6 +27,34 @@ BUZZER::~BUZZER(){
   Serial.println("*** Objet Buzzer détruit, pin = "+String(pinBUZZER)+" ***");
 }
 
+bool BUZZER::getEtat(){
+  return etat;
+}
+
+int BUZZER::getFreq1(){
+  return freq1;
+}
+
+int BUZZER::getFreq2(){
+  return freq2;
+}
+
+int BUZZER::getDeltaMillis(){
+  return deltaMillis;
+}
+
+void BUZZER::setFreq1(int f){
+  freq1=f;
+}
+
+void BUZZER::setFreq2(int f){
+  freq2=f;
+}
+
+void BUZZER::setDeltaMillis(int t){
+  deltaMillis=t;
+}
+
 void BUZZER::turnOn(){
   currentMillis=millis();
   if (currentMillis-lastMillis>=deltaMillis){
@@ -39,8 +67,11 @@ void BUZZER::turnOn(){
     isFreq1=!isFreq1;
     lastMillis=currentMillis;
   }
-  etat=true;
-  Serial.println("--- BUZZER ON ---");
+  if (not(etat)){
+    etat=true;
+    Serial.println("--- BUZZER ON ---");
+  }
+  
 }
 
 void BUZZER::turnOff(){

@@ -1,7 +1,7 @@
 #include "Application.h"
 
-//Rappel arguments dans l'ordre : pin LED, pin BUZZER
-Application myApplication(14, 12);
+//Rappel arguments dans l'ordre : pin LED, pin BUZZERè
+Application myApplication(14, 12, 13, 15);
 
 void setup()
 {

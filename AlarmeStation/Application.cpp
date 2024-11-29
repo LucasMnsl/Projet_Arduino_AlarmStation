@@ -7,8 +7,11 @@
 #include "Application.h"
 
 
-Application::Application(int pinPourLED, int pinPourBUZZER)
+Application::Application(int pinPourLED, int pinPourBUZZER, int pinPourBUTTON1, int pinPourBUTTON2)
 {
+  maPinBUTTON1=pinPourBUTTON1;
+  maPinBUTTON2=pinPourBUTTON2;
+  monMENU=nullptr;
   maPinLED=pinPourLED;
   maLED=nullptr;
   maPinBUZZER=pinPourBUZZER;
@@ -19,6 +22,7 @@ Application::~Application()
 {
   delete maLED;
   delete monBUZZER;
+  delete monMENU;
 }  
 
 void Application::init(void)
@@ -29,11 +33,18 @@ void Application::init(void)
   delay(1000);
   monBUZZER=new BUZZER(maPinBUZZER);
   delay(1000);
+  monMENU=new MENU(maPinBUTTON1, maPinBUTTON2);
+  delay(1000);
 }
 
 
 void Application::run(void)
 {
+  monMENU->checkButtons(monBUZZER, maLED);
+  monMENU->afficherMenu(monBUZZER, maLED);
+  /*
   maLED->turnOn();
   monBUZZER->turnOn();
+  */
+  delay(50);
 }

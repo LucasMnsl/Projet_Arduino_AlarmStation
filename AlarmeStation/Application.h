@@ -8,6 +8,7 @@
 
 #include "LED.h"
 #include "BUZZER.h"
+#include "MENU.h"
 
 /**
   * @class Application
@@ -16,6 +17,9 @@
 class Application
 {
   private :
+    int maPinBUTTON1;
+    int maPinBUTTON2;
+    MENU *monMENU;
     int maPinLED;
     LED *maLED;         //pointeur sur un objet LED permet a ce que toute la classe puisse accéder à l'objet mais sans le créer maintenant
     int maPinBUZZER;
@@ -32,7 +36,7 @@ class Application
       * @fn Application(int pinPourLED, int pinPourBUZZER);
       * @brief Constructeur principal qui affecte les variables dédiée au pins et initialise les pointeurs d'objets
     */  
-    Application(int pinPourLED, int pinPourBUZZER);
+    Application(int pinPourLED, int pinPourBUZZER, int pinPourBUTTON1, int pinPourBUTTON2);
     
     /**
      * @fn ~Application();
