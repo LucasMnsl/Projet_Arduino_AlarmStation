@@ -32,7 +32,7 @@ void loop()
     lcd.print("Station alarme");
     if (menu==1){
       lcd.setCursor(0, 1);
-      lcd.print("-> Réglages");
+      lcd.print("-> Reglages");
     }
     else if (menu==2) {
       lcd.setCursor(0, 1);
@@ -53,5 +53,5 @@ void loop()
         pastValue=0;
     }
   
-    delay(1000);
+    delay(100);
 }
