@@ -20,6 +20,7 @@ example: Serial.println(capteur.lire_etat());
 
   Capteur& operator++();
   
+  int lire_nombre_capteur();
 
 
 };

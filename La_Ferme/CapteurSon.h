@@ -10,6 +10,14 @@ protected:
   int pinson = A0;
 public:
 
+
+  /*
+  @briel: Il initiale le limit de sound dont le capteur se déclenche
+  @note: le limit par defaut est 14
+  @param: int limit
+  @return: --
+  example: CapteurSon S(15)
+  */
   CapteurSon(int limit = 14);
 
   /*

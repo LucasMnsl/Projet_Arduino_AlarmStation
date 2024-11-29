@@ -28,10 +28,11 @@ Application::~Application()
 void Application::init(void)
 {
   Serial.begin(9600);
-  S = new CapteurSon;
-  R = new CapteurRanger;
-  
-  
+  S = new CapteurSon(13);
+  S++;
+  R = new CapteurRanger(20);
+  R++;
+  S->lire_nombre_capteur();
 }
 
 

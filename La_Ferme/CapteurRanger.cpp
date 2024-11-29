@@ -2,6 +2,10 @@
 #include "Capteur.h"
 #include "CapteurRanger.h"
 
+CapteurRanger::CapteurRanger(int limit){
+  l = limit;
+}
+
 
 long CapteurRanger::lire_distance(){
   return distance;
@@ -9,7 +13,7 @@ long CapteurRanger::lire_distance(){
 
 void CapteurRanger::check_etat(Ultrasonic *u){
   distance = u->MeasureInCentimeters();
-  if (distance <=10){
+  if (distance <=l){
     etat = 1;
   }
   else{
