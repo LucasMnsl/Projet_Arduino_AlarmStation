@@ -27,7 +27,7 @@ Application::~Application()
 
 void Application::init(void)
 {
-  delay(5000);        //5sec pour lancer le moniteur série
+  delay(5000);                //5sec pour avoir le temps de lancer le moniteur série et observer que tout les objets sont crées correctement
   Serial.begin(9600);
   maLED=new LED(maPinLED);
   delay(1000);
@@ -40,11 +40,20 @@ void Application::init(void)
 
 void Application::run(void)
 {
-  monMENU->checkButtons(monBUZZER, maLED);
-  monMENU->afficherMenu(monBUZZER, maLED);
-  /*
-  maLED->turnOn();
-  monBUZZER->turnOn();
-  */
+  try{
+    monMENU->checkButtons(monBUZZER, maLED);
+    monMENU->afficherMenu(monBUZZER, maLED);
+    /*
+    maLED->turnOn();
+    monBUZZER->turnOn();
+    */
+  }
+  catch(int erreur){
+    switch (erreur){
+      case 1 : Serial.println("Erreur : ce paramètre ne peut pas être négatif"); break;
+      default : Serial.println("Exception inconnue");
+    }
+  }
+
   delay(50);
 }

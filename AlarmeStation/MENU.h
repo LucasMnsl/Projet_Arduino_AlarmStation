@@ -1,5 +1,5 @@
 /*********************************************************************
- * @file  LED.h
+ * @file  MENU.h
  * @author <MANSILHA Lucas mansilha@insa-toulouse.fr>
  * @brief Fichier include de la classe
  *********************************************************************/
@@ -12,14 +12,26 @@
 #include "BUZZER.h"
 #include "LED.h"
 
+/**
+ * @class MENU
+ * @brief Gère un menu interactif pour un système Arduino en utilisant 
+ *        un écran LCD, des boutons et des périphériques comme un buzzer 
+ *        et des LEDs.
+ */
 class MENU {
   private :
-    rgb_lcd monLCD;
-    int pinB1;
-    int pinB2;
-    int etat;
-    float Luminosity=1;
-    std::string couleurLCD;
+  
+    rgb_lcd monLCD;         /**< Instance de la classe rgb_lcd pour contrôler l'écran LCD. */
+    int pinB1;              /**< Numéro de pin pour le Bouton 1. */
+    int pinB2;              /**< Numéro de pin pour le Bouton 2. */
+    int etat;               /**< État interne du menu. */
+    float Luminosity = 1;   /**< Niveau de luminosité actuel de l'écran LCD. */
+    std::string couleurLCD; /**< Couleur actuelle affichée sur l'écran LCD. */
+    
+     /**
+     * @brief Liste des couleurs prédéfinies avec leurs valeurs RGB.
+     * Chaque entrée contient un nom de couleur sous forme de chaîne et un triplet RGB correspondant.
+     */
     const std::array<std::pair<std::string, std::array<int, 3>>, 10> colors = {{
         {"Noir", {0, 0, 0}},
         {"Blanc", {255, 255, 255}},
@@ -32,25 +44,63 @@ class MENU {
         {"Gris", {128, 128, 128}},
         {"Marron", {165, 42, 42}}
     }};
+     /**
+     * @brief Liste des niveaux de luminosité prédéfinis.
+     * Chaque entrée contient un nom de niveau et une valeur flottante correspondante.
+     */
     const std::array<std::pair<std::string, float>, 3> Luminosities = {{
         {"Basse", 0.2},
         {"Moyenne", 0.5},
         {"Elevee", 1},
     }};
+    
+    int numLum = 0;                                     /**< Index actuel dans le tableau Luminosities. */
+    std::string LumAffich = Luminosities[numLum].first; /**< Nom du niveau de luminosité affiché. */
+    int numCoul = 0;                                    /**< Index actuel dans le tableau colors. */
+    std::string coulAffich = colors[numCoul].first;     /**< Nom de la couleur affichée. */
+    int currentValueB1 = 0;                             /**< État actuel du Bouton 1. */
+    int pastValueB1 = 0;                                /**< État précédent du Bouton 1. */
+    int currentValueB2 = 0;                             /**< État actuel du Bouton 2. */
+    int pastValueB2 = 0;                                /**< État précédent du Bouton 2. */
+    
   public :
-    int numLum=0;
-    std::string LumAffich=Luminosities[numLum].first;
-    int numCoul=0;
-    std::string coulAffich=colors[numCoul].first;
-    int currentValueB1=0;
-    int pastValueB1=0;
-    int currentValueB2=0;
-    int pastValueB2=0;
+  
+     /**
+     * @brief Constructeur par défaut de la classe MENU.
+     */
     MENU();
+
+     /**
+     * @brief Constructeur avec initialisation des pins des boutons.
+     * @param pin1 Numéro de pin pour le Bouton 1.
+     * @param pin2 Numéro de pin pour le Bouton 2.
+     */
     MENU(int pin1, int pin2);
+
+     /**
+     * @brief Destructeur de la classe MENU.
+     */
     ~MENU();
+
+     /**
+     * @brief Affiche le menu actuel sur l'écran LCD.
+     * @param leBUZZER Pointeur vers un objet BUZZER pour afficher les paramètres de la classe.
+     * @param laLED Pointeur vers un objet LED pour afficher les paramètres de la classe.
+     */
     void afficherMenu(BUZZER *leBUZZER, LED *laLED);
+
+     /**
+     * @brief Vérifie l'état des boutons et traite les entrées utilisateur.
+     * @param leBUZZER Pointeur vers un objet BUZZER pour modifier les paramètres de la classe.
+     * @param laLED Pointeur vers un objet LED pour modifier les paramètres de la classe.
+     */
     void checkButtons(BUZZER *leBUZZER, LED *laLED);
+
+     /**
+     * @brief Met à jour la couleur RGB de l'écran LCD en fonction du nom donné.
+     * @param couleur Nom de la couleur à afficher sur l'écran LCD 
+     *                (doit correspondre à une entrée dans `colors`).
+     */
     void setRGBLCD(std::string couleur);
 };
 
