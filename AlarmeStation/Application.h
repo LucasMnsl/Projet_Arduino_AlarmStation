@@ -9,6 +9,9 @@
 #include "LED.h"
 #include "BUZZER.h"
 #include "MENU.h"
+#include "CapteurSon.h"
+#include "CapteurRanger.h"
+#include <Ultrasonic.h>
 
 /**
   * @class Application
@@ -17,13 +20,23 @@
 class Application
 {
   private :
+    int maPinLED;
+    int maPinBUZZER;
     int maPinBUTTON1;
     int maPinBUTTON2;
-    MENU *monMENU;
-    int maPinLED;
+    int maPortUltrasonic;
+    int maPinson;
+    int maLimitSon;
+    int maLimitDistance;
+
+
+    MENU *monMENU;   
     LED *maLED;         //pointeur sur un objet LED permet a ce que toute la classe puisse accéder à l'objet mais sans le créer maintenant
-    int maPinBUZZER;
     BUZZER *monBUZZER;
+    CapteurSon *maCapteurSon;
+    CapteurRanger *maCapteurRanger; 
+    Ultrasonic *ultrasonic;
+    
   public :
   
     /**
@@ -36,7 +49,7 @@ class Application
       * @fn Application(int pinPourLED, int pinPourBUZZER);
       * @brief Constructeur principal qui affecte les variables dédiée au pins et initialise les pointeurs d'objets
     */  
-    Application(int pinPourLED, int pinPourBUZZER, int pinPourBUTTON1, int pinPourBUTTON2);
+    Application(int pinPourLED, int pinPourBUZZER, int pinPourBUTTON1, int pinPourBUTTON2, int Port, int pinpourSon, int limit_son, int limit_distance);
     
     /**
      * @fn ~Application();
