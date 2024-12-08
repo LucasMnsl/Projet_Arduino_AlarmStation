@@ -283,6 +283,14 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.print(cpt_r->lire_limit());
       break;
 
+    case 15:
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Reglages ");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->limit reset");
+      break;
+
   }
 }
 
@@ -306,7 +314,8 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       else if (etat==21) etat=20;
       else if (etat==12) etat=13;
       else if (etat==13) etat=14;
-      else if (etat==14) etat=10;
+      else if (etat==14) etat=15;
+      else if (etat==15) etat=10;
       else if (etat==102) etat=100;
       else if (etat==121) etat=120;
       else if (etat==1000) leBUZZER->setFreq1((leBUZZER->getFreq1())-10);
@@ -326,6 +335,7 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       else if (etat == 30) etat=31;
       else if (etat == 31) etat=32;
       else if (etat == 32) etat=30;
+      
     }
     else if (currentValueB1==0){
       pastValueB1=0;
@@ -382,6 +392,11 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       else if (etat == 14) etat = 140;
       else if (etat == 140){
         cpt_r->set_limit(cpt_r->lire_limit() + 10);
+      }
+
+      else if (etat == 15){
+        cpt_r->set_limit(30);
+        cpt_son->set_limit(30);
       }
     }
     else if (currentValueB2==0){
