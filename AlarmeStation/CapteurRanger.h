@@ -43,7 +43,9 @@ public:
   */
   void check_etat(Ultrasonic *U); // 
 
-  
+  void set_limit(int new_limit);
+
+  int lire_limit();
 
 };
 

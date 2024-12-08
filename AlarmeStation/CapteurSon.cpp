@@ -1,8 +1,8 @@
 #include "CapteurSon.h"
 #include "Capteur.h"
 
-CapteurSon::CapteurSon(int limit, int pin){
-  l = limit;
+CapteurSon::CapteurSon(int l, int pin){
+  limit = l;
   pinson = pin;
   nombre_capteur++;
 }
@@ -12,12 +12,18 @@ long CapteurSon::lire_sound(){
   return sound;
 }
 
-
+void CapteurSon::set_limit(int new_limit) {
+    limit = new_limit;
+}
 
 void CapteurSon::check_etat(){
   delay(100);
   sound = analogRead(pinson);
-  if (sound > l){
+  if (sound > limit){
     etat = 1;
   }
+}
+
+int CapteurSon::lire_limit(){
+  return limit;
 }

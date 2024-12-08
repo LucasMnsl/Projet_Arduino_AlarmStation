@@ -29,4 +29,11 @@ int CapteurRanger::lire_port(){
   return port;
 }
 
+void CapteurRanger::set_limit(int new_limit) {
+    limit = new_limit;
+}
+
+int CapteurRanger::lire_limit(){
+  return limit;
+}
 

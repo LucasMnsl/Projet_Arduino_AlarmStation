@@ -251,6 +251,38 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.print("------");
       break;
 
+    case 13:
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Reglages ");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->limit sound");
+      break;
+
+    case 14:
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Reglages ");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->limit distace");
+      break;
+
+    case 130 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("limit sound : ");
+      monLCD.setCursor(0, 1);
+      monLCD.print(cpt_son->lire_limit());
+      break;
+
+    case 140 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("limit distance : ");
+      monLCD.setCursor(0, 1);
+      monLCD.print(cpt_r->lire_limit());
+      break;
+
   }
 }
 
@@ -272,7 +304,9 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       else if (etat==3) etat=4;
       else if (etat==4) etat=1;
       else if (etat==21) etat=20;
-      else if (etat==12) etat=10;
+      else if (etat==12) etat=13;
+      else if (etat==13) etat=14;
+      else if (etat==14) etat=10;
       else if (etat==102) etat=100;
       else if (etat==121) etat=120;
       else if (etat==1000) leBUZZER->setFreq1((leBUZZER->getFreq1())-10);
@@ -341,7 +375,14 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       //Station alarme fonctione
       else if (etat == 4) etat = 40;
       
-
+      else if (etat == 13) etat = 130;
+      else if (etat == 130){
+        cpt_son->set_limit(cpt_son->lire_limit() + 10);
+      }
+      else if (etat == 14) etat = 140;
+      else if (etat == 140){
+        cpt_r->set_limit(cpt_r->lire_limit() + 10);
+      }
     }
     else if (currentValueB2==0){
         pastValueB2=0;

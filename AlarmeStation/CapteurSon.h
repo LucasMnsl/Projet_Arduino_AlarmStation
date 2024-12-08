@@ -6,7 +6,7 @@
 class CapteurSon :public Capteur{
 protected:
   long sound;
-  int l;
+  int limit;
   int pinson;
 public:
 
@@ -18,7 +18,7 @@ public:
   @return: --
   example: CapteurSon S(15)
   */
-  CapteurSon(int limit , int pin );
+  CapteurSon(int l , int pin );
 
   /*
   @briel: Il retoune la valeur de sound
@@ -37,6 +37,10 @@ public:
   example: capteurranger.check_etat();
   */
   void check_etat(); 
+
+  void set_limit(int new_limit);
+
+  int lire_limit();
 
 };
 
