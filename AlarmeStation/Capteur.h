@@ -22,6 +22,8 @@ example: Serial.println(capteur.lire_etat());
   
   int lire_nombre_capteur();
 
+  void reset();
+
 
 };
 

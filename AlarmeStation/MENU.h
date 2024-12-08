@@ -11,6 +11,9 @@
 #include "rgb_lcd.h"
 #include "BUZZER.h"
 #include "LED.h"
+#include "CapteurSon.h"
+#include "CapteurRanger.h"
+#include <Ultrasonic.h>
 
 class MENU {
   private :
@@ -49,8 +52,8 @@ class MENU {
     MENU();
     MENU(int pin1, int pin2);
     ~MENU();
-    void afficherMenu(BUZZER *leBUZZER, LED *laLED);
-    void checkButtons(BUZZER *leBUZZER, LED *laLED);
+    void afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, CapteurRanger *cpt_r);
+    void checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, CapteurRanger *cpt_r);
     void setRGBLCD(std::string couleur);
 };
 

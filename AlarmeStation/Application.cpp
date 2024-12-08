@@ -53,15 +53,16 @@ void Application::run(void)
 {
   maCapteurSon->check_etat();
   maCapteurRanger->check_etat(ultrasonic);
-  Serial.print("sound: ");
-  Serial.println(maCapteurSon->lire_sound());
-  Serial.print("distance: ");
-  Serial.println(maCapteurRanger->lire_distance());
-  monMENU->checkButtons(monBUZZER, maLED);
-  monMENU->afficherMenu(monBUZZER, maLED);
+  //Serial.print("sound: ");
+  //Serial.println(maCapteurSon->lire_sound());
+  //Serial.print("distance: ");
+  //Serial.println(maCapteurSon->lire_etat());
+  //Serial.println(maCapteurRanger->lire_etat());
+  monMENU->checkButtons(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
+  monMENU->afficherMenu(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
   /*
   maLED->turnOn();
   monBUZZER->turnOn();
   */
-  delay(500);
+  delay(50);
 }

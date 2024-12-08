@@ -15,11 +15,9 @@ long CapteurSon::lire_sound(){
 
 
 void CapteurSon::check_etat(){
+  delay(100);
   sound = analogRead(pinson);
   if (sound > l){
     etat = 1;
-  }
-  else{
-    etat = 0;
   }
 }

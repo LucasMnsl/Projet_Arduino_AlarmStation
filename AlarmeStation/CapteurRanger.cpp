@@ -23,9 +23,6 @@ void CapteurRanger::check_etat(Ultrasonic *U){
   if (distance <= limit){
     etat = 1;
   }
-  else{
-    etat = 0;
-  }
 }
 
 int CapteurRanger::lire_port(){

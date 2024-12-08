@@ -10,4 +10,7 @@ int Capteur::lire_etat(){
   return etat;
 }
 
+void Capteur::reset(){
+  etat = 0;
+}
 

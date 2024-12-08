@@ -5,6 +5,9 @@
  *********************************************************************/
 #include <Arduino.h>
 #include "Menu.h"
+#include "CapteurSon.h"
+#include "CapteurRanger.h"
+#include <Ultrasonic.h>
 
 MENU::MENU(){
   
@@ -39,7 +42,7 @@ void MENU::setRGBLCD(std::string couleur){
   }
 }
 
-void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED){
+void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, CapteurRanger *cpt_r){
   switch (etat){
     case 1 :
       monLCD.clear();
@@ -174,10 +177,84 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED){
       monLCD.setCursor(0, 1);
       monLCD.print("->Test BUZZER");
       break;
+
+    //test Capteur son
+    case 3 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Station alarme");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->Test capteur");
+      break;
+
+    case 30 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Test capteur");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->Test sound");
+      break;
+
+    case 300 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Test sound");
+      monLCD.setCursor(0, 1);
+      monLCD.print(cpt_son->lire_sound());
+      break;
+
+    case 31 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Test capteur");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->Test distance");
+      break;
+
+    case 310 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Test distance");
+      monLCD.setCursor(0, 1);
+      monLCD.print(cpt_r->lire_distance());
+      break;
+
+    case 32 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Test capteur");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->nombre capteur");
+      break;
+
+    case 320:
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("nombre capteur :");
+      monLCD.setCursor(0, 1);
+      monLCD.print(cpt_r->lire_nombre_capteur());
+      break;
+
+    case 4 :
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Station alarme");
+      monLCD.setCursor(0, 1);
+      monLCD.print("->demarrer");
+      break;
+
+    case 40:
+      monLCD.clear();
+      monLCD.setCursor(0, 0);
+      monLCD.print("Station fonctione");
+      monLCD.setCursor(0, 1);
+      monLCD.print("------");
+      break;
+
   }
 }
 
-void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
+void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, CapteurRanger *cpt_r ){
     
     if (leBUZZER->getEtat()){
       leBUZZER->turnOn();
@@ -191,7 +268,9 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
       Serial.println("Etat du Menu : "+String(etat));
       pastValueB1=1;
       if(etat==1 or etat==10 or etat==11 or etat==20 or etat==100 or etat==101 or etat==120) etat++;
-      else if (etat==2) etat=1;
+      else if (etat==2) etat=3;
+      else if (etat==3) etat=4;
+      else if (etat==4) etat=1;
       else if (etat==21) etat=20;
       else if (etat==12) etat=10;
       else if (etat==102) etat=100;
@@ -210,6 +289,9 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
         else numLum=0;
         LumAffich=Luminosities[numLum].first;
       }
+      else if (etat == 30) etat=31;
+      else if (etat == 31) etat=32;
+      else if (etat == 32) etat=30;
     }
     else if (currentValueB1==0){
       pastValueB1=0;
@@ -249,6 +331,17 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
         if (not(leBUZZER->getEtat())) leBUZZER->turnOn();
         else leBUZZER->turnOff();
       }
+
+
+      else if (etat == 3) etat = 30;          //test pour les capteur
+      else if (etat == 30) etat = 300;
+      else if (etat == 31) etat = 310;
+      else if (etat == 32) etat = 320;
+
+      //Station alarme fonctione
+      else if (etat == 4) etat = 40;
+      
+
     }
     else if (currentValueB2==0){
         pastValueB2=0;
@@ -259,5 +352,17 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED){
       etat=1;
       pastValueB2=1;
       pastValueB1=1;
+      cpt_son->reset();
+      cpt_r->reset();
+      laLED->turnOff();
+      leBUZZER->turnOff();
     }
+
+    if (etat == 40){
+        if((cpt_son->lire_etat() & cpt_r->lire_etat() ) ==1){
+            leBUZZER->turnOn();
+            laLED->turnOn();
+        }  
+      }
+
 }
