@@ -1,5 +1,4 @@
 
-
 /*********************************************************************
  * @file  Apllication.cpp
  * @author <mettre l'adresse mail ou nom prenom>
