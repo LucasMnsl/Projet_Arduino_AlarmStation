@@ -317,10 +317,22 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       else if (etat==15) etat=10;
       else if (etat==102) etat=100;
       else if (etat==121) etat=120;
-      else if (etat==1000) leBUZZER->setFreq1((leBUZZER->getFreq1())-10);
-      else if (etat==1010) leBUZZER->setFreq2((leBUZZER->getFreq2())-10);
-      else if (etat==1020) leBUZZER->setDelai((leBUZZER->getDelai())-10);
-      else if (etat==1100) laLED->setDelai((laLED->getDelai())-10);
+      else if (etat==1000) {
+        if (((leBUZZER->getFreq1())-10)>=0) leBUZZER->setFreq1((leBUZZER->getFreq1())-10);
+        else throw 1;
+      }
+      else if (etat==1010){
+        if (((leBUZZER->getFreq2())-10)>=0) leBUZZER->setFreq2((leBUZZER->getFreq2())-10);
+        else throw 1;
+      }
+      else if (etat==1020) {
+        if (((leBUZZER->getDelai())-10)>=0) leBUZZER->setDelai((leBUZZER->getDelai())-10);
+        else throw 1;
+      }
+      else if (etat==1100) {
+        if (((laLED->getDelai())-10)>=0) laLED->setDelai((laLED->getDelai())-10);
+        else throw 1;
+      }
       else if (etat==1200) {
         if (numCoul<(colors.size()-1)) numCoul++;
         else numCoul=0;

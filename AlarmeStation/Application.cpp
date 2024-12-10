@@ -47,11 +47,19 @@ void Application::init(void)
 
 void Application::run(void)
 {
-  maCapteurSon->check_etat();
-  maCapteurRanger->check_etat(ultrasonic);
+  try{
+    maCapteurSon->check_etat();
+    maCapteurRanger->check_etat(ultrasonic);
 
-  monMENU->checkButtons(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
-  monMENU->afficherMenu(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
+    monMENU->checkButtons(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
+    monMENU->afficherMenu(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
+  }
+  catch (int erreur){
+    switch (erreur){
+      case 1 : Serial.println("Impossible ce paramètre ne peut pas être négatif");
+      default : Serial.println("Interception d'une erreur inconnue");
+    }
+  }
 
   delay(50);
 }
