@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  Capteur.h
+ * @author <Haokai LIN>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #ifndef CAPTEUR_HPP_
 #define CAPTEUR_HPP_
 #include <Arduino.h>
@@ -29,4 +34,3 @@ example: Serial.println(capteur.lire_etat());
 
 
 #endif
-

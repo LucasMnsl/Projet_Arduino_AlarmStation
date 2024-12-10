@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  CapteurSon.cpp
+ * @author <Haokai LIN>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #include "CapteurSon.h"
 #include "Capteur.h"
 
@@ -17,10 +22,12 @@ void CapteurSon::set_limit(int new_limit) {
 }
 
 void CapteurSon::check_etat(){
-  delay(100);
+  //delay(100);
   sound = analogRead(pinson);
   if (sound > limit){
     etat = 1;
+  }else{
+    etat=0;
   }
 }
 

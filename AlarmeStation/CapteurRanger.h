@@ -1,9 +1,13 @@
+/*********************************************************************
+ * @file  CapteurRanger.h
+ * @author <Haokai LIN>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #ifndef CAPTEURRANGER_HPP_
 #define CAPTEURRANGER_HPP_
 #include <Arduino.h>
 #include "Capteur.h"
 #include "Ultrasonic.h"
-
 
 class CapteurRanger :public Capteur{
 protected:

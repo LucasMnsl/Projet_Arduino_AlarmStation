@@ -34,17 +34,13 @@ Application::~Application()
 
 void Application::init(void)
 {
+  Serial.begin(9600);
   maCapteurSon = new CapteurSon(maLimitSon, maPinson);
   maCapteurRanger = new CapteurRanger(maLimitDistance,maPortUltrasonic);
   ultrasonic = new Ultrasonic(maCapteurRanger->lire_port());
-  delay(5000);        //5sec pour lancer le moniteur série
-  Serial.begin(9600);
   maLED=new LED(maPinLED);
-  delay(1000);
   monBUZZER=new BUZZER(maPinBUZZER);
-  delay(1000);
   monMENU=new MENU(maPinBUTTON1, maPinBUTTON2);
-  delay(1000);
 }
 
 
@@ -53,16 +49,9 @@ void Application::run(void)
 {
   maCapteurSon->check_etat();
   maCapteurRanger->check_etat(ultrasonic);
-  //Serial.print("sound: ");
-  //Serial.println(maCapteurSon->lire_sound());
-  //Serial.print("distance: ");
-  //Serial.println(maCapteurSon->lire_etat());
-  //Serial.println(maCapteurRanger->lire_etat());
+
   monMENU->checkButtons(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
   monMENU->afficherMenu(monBUZZER, maLED, maCapteurSon, maCapteurRanger);
-  /*
-  maLED->turnOn();
-  monBUZZER->turnOn();
-  */
+
   delay(50);
 }

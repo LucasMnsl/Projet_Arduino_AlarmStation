@@ -7,7 +7,6 @@
 #include "Menu.h"
 #include "CapteurSon.h"
 #include "CapteurRanger.h"
-#include <Ultrasonic.h>
 
 MENU::MENU(){
   
@@ -192,14 +191,14 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.setCursor(0, 0);
       monLCD.print("Test capteur");
       monLCD.setCursor(0, 1);
-      monLCD.print("->Test sound");
+      monLCD.print("->Test son");
       break;
 
     case 300 :
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("Test sound");
-      monLCD.setCursor(0, 1);
+      monLCD.print("Test son");
+      monLCD.setCursor(3, 1);
       monLCD.print(cpt_son->lire_sound());
       break;
 
@@ -215,7 +214,7 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.clear();
       monLCD.setCursor(0, 0);
       monLCD.print("Test distance");
-      monLCD.setCursor(0, 1);
+      monLCD.setCursor(3, 1);
       monLCD.print(cpt_r->lire_distance());
       break;
 
@@ -224,13 +223,13 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.setCursor(0, 0);
       monLCD.print("Test capteur");
       monLCD.setCursor(0, 1);
-      monLCD.print("->nombre capteur");
+      monLCD.print("->Nombre capteur");
       break;
 
     case 320:
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("nombre capteur :");
+      monLCD.print("Nombre capteur :");
       monLCD.setCursor(0, 1);
       monLCD.print(cpt_r->lire_nombre_capteur());
       break;
@@ -240,13 +239,13 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.setCursor(0, 0);
       monLCD.print("Station alarme");
       monLCD.setCursor(0, 1);
-      monLCD.print("->demarrer");
+      monLCD.print("->Demarrer");
       break;
 
     case 40:
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("Station fonctione");
+      monLCD.print("Station ON");
       monLCD.setCursor(0, 1);
       monLCD.print("------");
       break;
@@ -256,7 +255,7 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.setCursor(0, 0);
       monLCD.print("Reglages ");
       monLCD.setCursor(0, 1);
-      monLCD.print("->limit sound");
+      monLCD.print("->Seuil sonore");
       break;
 
     case 14:
@@ -264,22 +263,22 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.setCursor(0, 0);
       monLCD.print("Reglages ");
       monLCD.setCursor(0, 1);
-      monLCD.print("->limit distace");
+      monLCD.print("->Seuil distance");
       break;
 
     case 130 :
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("limit sound : ");
-      monLCD.setCursor(0, 1);
+      monLCD.print("Seuil sonore : ");
+      monLCD.setCursor(3, 1);
       monLCD.print(cpt_son->lire_limit());
       break;
 
     case 140 :
       monLCD.clear();
       monLCD.setCursor(0, 0);
-      monLCD.print("limit distance : ");
-      monLCD.setCursor(0, 1);
+      monLCD.print("Seuil distance : ");
+      monLCD.setCursor(3, 1);
       monLCD.print(cpt_r->lire_limit());
       break;
 
@@ -288,7 +287,7 @@ void MENU::afficherMenu(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       monLCD.setCursor(0, 0);
       monLCD.print("Reglages ");
       monLCD.setCursor(0, 1);
-      monLCD.print("->limit reset");
+      monLCD.print("->Limite reset");
       break;
 
   }
@@ -335,6 +334,12 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
       else if (etat == 30) etat=31;
       else if (etat == 31) etat=32;
       else if (etat == 32) etat=30;
+      else if (etat == 130){
+        cpt_son->set_limit(cpt_son->lire_limit() - 10);
+      }
+      else if (etat == 140){
+        cpt_r->set_limit(cpt_r->lire_limit() - 10);
+      }
       
     }
     else if (currentValueB1==0){
@@ -415,7 +420,7 @@ void MENU::checkButtons(BUZZER *leBUZZER, LED *laLED, CapteurSon *cpt_son, Capte
     }
 
     if (etat == 40){
-        if((cpt_son->lire_etat() & cpt_r->lire_etat() ) ==1){
+        if((cpt_son->lire_etat() or cpt_r->lire_etat()) ==1){
             leBUZZER->turnOn();
             laLED->turnOn();
         }  

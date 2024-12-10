@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  BUZZER.h
+ * @author <Haokai LIN>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #include "Ultrasonic.h"
 #include "Capteur.h"
 #include "CapteurRanger.h"
@@ -23,6 +28,9 @@ void CapteurRanger::check_etat(Ultrasonic *U){
   if (distance <= limit){
     etat = 1;
   }
+  else {
+    etat = 0;
+  }
 }
 
 int CapteurRanger::lire_port(){
@@ -36,4 +44,3 @@ void CapteurRanger::set_limit(int new_limit) {
 int CapteurRanger::lire_limit(){
   return limit;
 }
-

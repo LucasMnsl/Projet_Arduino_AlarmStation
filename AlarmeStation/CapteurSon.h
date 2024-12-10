@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  CapteurSon.h
+ * @author <Haokai LIN>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #ifndef CAPTEURSON_HPP_
 #define CAPTEURSON_HPP_
 #include <Arduino.h>
@@ -47,4 +52,3 @@ public:
 
 
 #endif
-

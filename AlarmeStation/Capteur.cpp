@@ -1,3 +1,8 @@
+/*********************************************************************
+ * @file  Capteur.cpp
+ * @author <Haokai LIN>
+ * @brief Fichier include de la classe
+ *********************************************************************/
 #include "Capteur.h"
 
 int Capteur::nombre_capteur = 0;
@@ -13,4 +18,3 @@ int Capteur::lire_etat(){
 void Capteur::reset(){
   etat = 0;
 }
-
