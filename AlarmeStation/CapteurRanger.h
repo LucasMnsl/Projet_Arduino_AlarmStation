@@ -18,13 +18,14 @@ public:
 
 
   /*
-  @briel: Il initiale le limit de distance dont le capteur se déclenche
+  @briel: Il initialise la limite de distance dont le capteur se déclenche
   @note: --
   @param: int limit int port
   @return: --
   example: CapteurRanger R(60)
   */
   CapteurRanger(int l,int p);
+
 
 
   int lire_port();
