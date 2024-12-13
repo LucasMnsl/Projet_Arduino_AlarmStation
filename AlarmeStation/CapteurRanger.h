@@ -9,52 +9,64 @@
 #include "Capteur.h"
 #include "Ultrasonic.h"
 
-class CapteurRanger :public Capteur{
+class CapteurRanger : public Capteur {
 protected:
-  long distance;
-  int limit;
-  int port;
+  long distance; // Distance mesurée par le capteur ultrasonique.
+  int limit;     // Limite de distance pour déclencher le capteur.
+  int port;      // Port utilisé par le capteur.
 public:
 
+  /*
+  @brief: Initialise le capteur avec une limite et un port.
+  @note: Valide uniquement les ports 2, 12, 14, et 15.
+  @param: int l - Limite de distance.
+          int p - Port utilisé.
+  @return: --
+  Exemple: CapteurRanger ranger(60, 12);
+  */
+  CapteurRanger(int l, int p);
 
   /*
-  @briel: Il initialise la limite de distance dont le capteur se déclenche
+  @brief: Lit le port utilisé par le capteur.
   @note: --
-  @param: int limit int port
-  @return: --
-  example: CapteurRanger R(60)
+  @param: --
+  @return: Port (int).
   */
-  CapteurRanger(int l,int p);
-
-
-
   int lire_port();
 
   /*
-  @briel: Il retoune la valeur de distance
+  @brief: Retourne la distance mesurée.
   @note: --
   @param: --
-  @return: long (la valeur de capteur ultrasonic)
-  example: Serial.println(capteur.lire_distance());
+  @return: Distance mesurée (long).
+  Exemple: Serial.println(ranger.lire_distance());
   */
-  long lire_distance(); 
+  long lire_distance();
 
   /*
-  @briel: IL lit le son du capteur et change la valeur de distance et l'état.
-  @note: la condition de le capteur change l'état est <= 10cm
-  @param: class ultrasonic
+  @brief: Vérifie et met à jour l'état en fonction de la distance mesurée.
+  @note: Si la distance est inférieure ou égale à la limite, l'état passe à 1.
+  @param: Ultrasonic *U - Instance de la classe Ultrasonic.
   @return: --
-  example: capteurranger.check_etat();
+  Exemple: ranger.check_etat(&ultrasonic);
   */
-  void check_etat(Ultrasonic *U); // 
+  void check_etat(Ultrasonic *U);
 
+  /*
+  @brief: Modifie la limite de distance du capteur.
+  @note: --
+  @param: int new_limit - Nouvelle limite.
+  @return: --
+  */
   void set_limit(int new_limit);
 
+  /*
+  @brief: Retourne la limite actuelle du capteur.
+  @note: --
+  @param: --
+  @return: Limite (int).
+  */
   int lire_limit();
-
 };
-
-
-
 
 #endif

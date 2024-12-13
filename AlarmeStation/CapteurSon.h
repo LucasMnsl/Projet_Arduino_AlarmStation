@@ -8,47 +8,56 @@
 #include <Arduino.h>
 #include "Capteur.h"
 
-class CapteurSon :public Capteur{
+class CapteurSon : public Capteur {
 protected:
-  long sound;
-  int limit;
-  int pinson;
+  long sound;  // Valeur sonore mesurée.
+  int limit;   // Limite sonore pour déclencher le capteur.
+  int pinson;  // Pin associé au capteur sonore.
 public:
 
-
   /*
-  @briel: Il initiale le limit de sound dont le capteur se déclenche
-  @note: le limit par defaut est 14
-  @param: int limit
+  @brief: Initialise le capteur sonore avec une limite et un pin.
+  @note: Par défaut, la limite est 14.
+  @param: int l - Limite sonore.
+          int pin - Pin du capteur.
   @return: --
-  example: CapteurSon S(15)
+  Exemple: CapteurSon son(20, A0);
   */
-  CapteurSon(int l , int pin );
+  CapteurSon(int l, int pin);
 
   /*
-  @briel: Il retoune la valeur de sound
+  @brief: Retourne la valeur sonore mesurée.
   @note: --
   @param: --
-  @return: long (la valeur de capteur sound)
-  example: Serial.println(capteur.lire_sound());
+  @return: Valeur sonore (long).
+  Exemple: Serial.println(son.lire_sound());
   */
-  long lire_sound(); 
+  long lire_sound();
 
   /*
-  @briel: IL lit le son du capteur et change la valeur de sound et l'état.
-  @note: la condition de le capteur change l'état est >= 14
+  @brief: Vérifie et met à jour l'état en fonction de la valeur sonore.
+  @note: Si la valeur est supérieure ou égale à la limite, l'état passe à 1.
   @param: --
   @return: --
-  example: capteurranger.check_etat();
+  Exemple: son.check_etat();
   */
-  void check_etat(); 
+  void check_etat();
 
+  /*
+  @brief: Modifie la limite sonore du capteur.
+  @note: --
+  @param: int new_limit - Nouvelle limite.
+  @return: --
+  */
   void set_limit(int new_limit);
 
+  /*
+  @brief: Retourne la limite actuelle du capteur sonore.
+  @note: --
+  @param: --
+  @return: Limite (int).
+  */
   int lire_limit();
-
 };
-
-
 
 #endif
